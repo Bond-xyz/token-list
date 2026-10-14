@@ -6,6 +6,7 @@ import { AbiCoder, getAddress } from 'ethers'
 const RPC_URL = process.env.OG_RPC_URL ?? 'https://evmrpc.0g.ai'
 const CHAIN_ID = 16661
 const list = JSON.parse(await readFile(new URL('../tokenlist.json', import.meta.url)))
+const registrySnapshot = JSON.parse(await readFile(new URL('../registry-tokens.json', import.meta.url)))
 const schema = JSON.parse(await readFile(new URL('../node_modules/@uniswap/token-lists/src/tokenlist.schema.json', import.meta.url)))
 
 // The requested public display name includes parentheses. The upstream schema's
@@ -20,6 +21,7 @@ if (!validateSchema(list)) {
   throw new Error(`Schema validation failed:\n${ajv.errorsText(validateSchema.errors, { separator: '\n' })}`)
 }
 
+const registryByAddress = new Map(registrySnapshot.tokens.map((token) => [token.address.toLowerCase(), token]))
 const addresses = new Set()
 const symbols = new Set()
 for (const token of list.tokens) {
@@ -27,6 +29,10 @@ for (const token of list.tokens) {
   let checksum
   try { checksum = getAddress(token.address) } catch { throw new Error(`${token.symbol}: invalid address ${token.address}`) }
   if (checksum !== token.address) throw new Error(`${token.symbol}: address must be EIP-55 checksummed (${checksum})`)
+  const registryToken = registryByAddress.get(token.address.toLowerCase())
+  if (registryToken && (registryToken.symbol !== token.symbol || registryToken.decimals !== token.decimals)) {
+    throw new Error(`${token.address}: conflicts with Bond registry (symbol/decimals must be ${registryToken.symbol}/${registryToken.decimals})`)
+  }
   const addressKey = token.address.toLowerCase()
   const symbolKey = token.symbol.toLowerCase()
   if (addresses.has(addressKey)) throw new Error(`${token.symbol}: duplicate address ${token.address}`)

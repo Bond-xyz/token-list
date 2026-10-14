@@ -22,3 +22,5 @@ This repository is the public token list for assets available in Bond AMM integr
 Reviewers check the submitted address, on-chain metadata, duplicate entries, logo format and availability, and whether the entry follows the token-list schema. Automated checks also validate the JSON schema, address checksum, chain ID, duplicate addresses and symbols, and on-chain decimals and symbols.
 
 Listing here does not imply endorsement by Bond. A listed token still needs an AMM pool before it can be traded.
+
+Bond's app merges this list with its internal registry: the registry wins on conflicts for existing tokens, and new tokens come from here.

@@ -1,0 +1,45 @@
+{
+  "chainId": 16661,
+  "tokens": [
+    {
+      "address": "0x1Cd0690fF9a693f5EF2dD976660a8dAFc81A109c",
+      "symbol": "W0G",
+      "decimals": 18
+    },
+    {
+      "address": "0x1f3AA82227281cA364bFb3d253B0f1af1Da6473E",
+      "symbol": "USDC.e",
+      "decimals": 6
+    },
+    {
+      "address": "0x564770837Ef8bbF077cFe54E5f6106538c815B22",
+      "symbol": "WETH",
+      "decimals": 18
+    },
+    {
+      "address": "0xa5613ac7f1E83a68719b1398c8F6aAA25581db82",
+      "symbol": "cbBTC",
+      "decimals": 8
+    },
+    {
+      "address": "0x0555E30da8f98308EdB960aa94C0Db47230d2B9c",
+      "symbol": "WBTC",
+      "decimals": 8
+    },
+    {
+      "address": "0x7bBC63D01CA42491c3E084C941c3E86e55951404",
+      "symbol": "st0G",
+      "decimals": 18
+    },
+    {
+      "address": "0x4B3c2f55fa67679b382c979A082Df1B32079B4cB",
+      "symbol": "a0G",
+      "decimals": 18
+    },
+    {
+      "address": "0xc77FBd3824cc68e612b26114D176879aDdc29463",
+      "symbol": "iAI",
+      "decimals": 18
+    }
+  ]
+}
